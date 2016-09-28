@@ -1,0 +1,6 @@
+{
+  "name": "The Key Depot",
+  "tagline": "Secure passwords",
+  "body": "# The Key Depot\r\n### Secure your passwords\r\n\r\nThis is an application which can be used to store all your passwords for various email Ids. For a developer like us, would own lots of email ids for various purposes. Remembering the email ids and its passwords is a hectic job(For myself :D). We tend to forget the passwords.\r\n\r\nThis is application would remember those passwords for you. Though you may have to remember one password to access this application(No way out :D).\r\n\r\n**The Key Depot** is in its infancy and will grow bigger in future(obviously! :D);\r\n\r\nCheers;\r\n\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
