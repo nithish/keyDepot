@@ -1,19 +1,20 @@
 var mongo = require('mongodb').MongoClient;
-module.exports = function(args2,args3,config){
-	mongo.connect("mongodb://localhost:27017/"+args2,function(err,db){
-		var dbname = args2 || "pwd";
-		db.db(dbname);
-			db.createCollection(args3,function(e,r){
-				var coll = db.collection(args3 || "non_personal");
-					coll.insertMany(config,function(err,res){
-							if(err){
-								console.log(err.errmsg);
-								db.close();
-								return;
-							}
-							console.log("Your credentials have been saved!");
-							db.close();
-					});
-				});
-			});
+module.exports = function(args2, config, callback) {
+    mongo.connect("mongodb://localhost:27017/test", function(err, db) {
+        switch (args2) {
+            case 1:
+            var users = db.db("users");
+                users.collection("user_info", function(err, collection) {
+                    if (err)
+                        console.error(err.toString());
+                    else {
+                        	collection.find({ "username": config["username"], "pwd": config["pwd"] }).toArray().then(function(docs){
+                            console.log(docs);
+                            docs.length > 0 ? callback({ "user_verify": 1 }) : callback({ "user_verify": 0 });
+                        });
+                    }
+                });
+                break;
+        }
+    });
 }
