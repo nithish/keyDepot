@@ -61,17 +61,34 @@ var server = http.createServer(function(req, res) {
         switch (urlStr.pathname) {
             case '/doLogin':
                 var data = "";
-                console.log("[200] " + req.method + " to " + req.url);
                 req.setEncoding('utf8');
                 req.on("data", function(datum) {
                     data += datum;
                 }).on("end", function() {
                     if (data.length > 0) {
                         var obj = decode(data);
+                        var reply = {};
                         db(1, obj, function(status) {
+                            console.log(status);
                             if (status["user_verify"] == 1) {
-                                res.writeHead(200, "OK", { 'Content-Type': 'text/html' });
-                                res.write(status["user_verify"]);
+                                fs.readFile("/Git-Repo/keyDepot/landing.html", "utf8", function(e, data) {
+                                    if (!e) {
+                                        res.writeHead(200, "OK", { 'Content-Type': 'text/json' });
+                                        reply["status"] = 1;
+                                        reply["data"] = data;
+                                        res.write(JSON.stringify(reply));
+                                        res.end();
+                                    } else {
+                                        console.log(e.toString());
+                                    }
+                                });
+                            } else {
+
+                                res.writeHead(200, "OK", { 'Content-Type': 'text/json' });
+                                reply["status"] = 2;
+                                reply["data"] = "Authentication Falied. Access Denied.";
+                                console.log(reply);
+                                res.write(JSON.stringify(reply));
                                 res.end();
                             }
                         });

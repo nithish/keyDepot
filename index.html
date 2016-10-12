@@ -2,27 +2,28 @@
 <html>
 <head>
 	<title>The Key Depot | Login</title>
-	<link rel="stylesheet" type="text/css" href="/css/basic.css">
-	<script type="text/javascript" src="/js/jquery-1.11.2.js"></script>
-	<script type="text/javascript" src="/js/core.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/basic.css">
+	<script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+	<script type="text/javascript" src="js/core.js"></script>
 </head>
 <body>
 	<div class="login-page">
 	  <div class="form">
 	  	<div class="title">The Key Depot</div>
-	    <form class="register-form">
+	    <form class="register-form" onsubmit="event.preventDefault();">
 	      <input type="text" id = "name" placeholder="name"/>
 	      <input type="password" id = "pwdr" placeholder="password"/>
 	      <input type="text" id = "email" placeholder="email address"/>
 	      <button id = "reg" data-form = "register-form">create</button>
 	      <p class="message">Already registered? <a href="#">Sign In</a></p>
 	    </form>
-	    <form class="login-form">
+	    <form class="login-form" onsubmit="event.preventDefault();">
 	      <input type="text" id = "username" name="username" placeholder="username"/>
 	      <input type="password" id = "pwd" name="pwd" placeholder="password"/>
 	      <button id = "login" data-form = "login-form">login</button>
 	      <p class="message">Not registered? <a href="#">Create an account</a></p>
 	    </form>
+	  	<div class = "errormsg"></div>
 	  </div>
 	</div>
 </body>
