@@ -49,7 +49,7 @@ var sendData = function(e) {
             //var reply = JSON.parse(reply);
             if (reply.status == 1) {
                 $("body").html(reply.data);
-                $("body").css("background", "white");
+                //$("body").css("background", "white");
             }else if(reply.status == 2){
             	$(".errormsg").html(reply.data);
             	$(".errormsg").css("display","block");

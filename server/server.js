@@ -56,6 +56,18 @@ var server = http.createServer(function(req, res) {
                     }
                 });
                 break;
+            case '/images/log-out.png','/css/images/log-out.png','images/log-out.png':
+                fs.readFile("/Git-Repo/keyDepot/images/log-out.png", "utf8", function(e, data) {
+                    if (!e) {
+                        res.writeHead(200, "OK", { 'Content-Type': 'image/png' });
+                        res.write(data);
+                        res.end();
+
+                    } else {
+                        console.log("Error" + e.toString());
+                    }
+                });
+                break;
         }
     else if (req.method == 'POST') {
         switch (urlStr.pathname) {
@@ -83,7 +95,6 @@ var server = http.createServer(function(req, res) {
                                     }
                                 });
                             } else {
-
                                 res.writeHead(200, "OK", { 'Content-Type': 'text/json' });
                                 reply["status"] = 2;
                                 reply["data"] = "Authentication Falied. Access Denied.";
